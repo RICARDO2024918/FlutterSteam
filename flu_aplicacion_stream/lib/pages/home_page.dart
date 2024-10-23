@@ -59,42 +59,40 @@ class HomeContent extends StatelessWidget {
     Movie(title: 'Pelicula 2', imageUrl: 'assets/imagen/pelicula2.jpeg'),
     Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
     Movie(title: 'Pelicula 4', imageUrl: 'assets/imagen/pelicula4.jpeg'),
-
-    //Movie(title: 'Pelicula 2', imageUrl: 'assets/imagen/pelicula2.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
-    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // número de columnas
+    return Padding(
+      padding: const EdgeInsets.all(8.0), // Añadimos padding para el GridView
+      child: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 5, // 5 columnas
+          crossAxisSpacing: 8.0, // Espacio horizontal entre columnas
+          mainAxisSpacing: 8.0, // Espacio vertical entre filas
+          childAspectRatio:
+              0.7, // Relación de aspecto de cada ítem (ancho/alto)
+        ),
+        itemCount: movies.length,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              Image.asset(
+                movies[index].imageUrl,
+                fit: BoxFit.cover,
+                width: 100, // Ajuste del ancho
+                height: 120, // Ajuste de la altura
+              ),
+              SizedBox(height: 8), // Espacio entre la imagen y el texto
+              Text(
+                movies[index].title,
+                style: TextStyle(fontSize: 12), // Ajuste del tamaño del texto
+                textAlign: TextAlign.center, // Centrado del texto
+              ),
+            ],
+          );
+        },
       ),
-      itemCount: movies.length,
-      itemBuilder: (context, index) {
-        return Column(
-          children: [
-            Image.asset(
-              movies[index].imageUrl,
-              fit: BoxFit.cover,
-            ),
-            Text(movies[index].title),
-          ],
-        );
-      },
     );
   }
 }
@@ -117,10 +115,10 @@ class MovieCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
+          Image.asset(
             movie.imageUrl,
             width: 100,
-            height: 100,
+            height: 120,
             fit: BoxFit.cover,
           ),
           Padding(
