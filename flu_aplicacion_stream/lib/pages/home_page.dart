@@ -55,42 +55,46 @@ class _HomePageState extends State<HomePage> {
 // Contenido de la página de inicio
 class HomeContent extends StatelessWidget {
   final List<Movie> movies = [
-    Movie(title: 'Pelicula 1', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 2', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 3', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 4', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 5', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 6', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 7', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 8', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 9', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 10', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 11', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 12', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 13', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 14', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 15', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 16', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 17', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 18', imageUrl: 'https://via.placeholder.com/150'),
-    Movie(title: 'Pelicula 19', imageUrl: 'https://via.placeholder.com/150'),
+    Movie(title: 'Pelicula 1', imageUrl: 'assets/imagen/pelicula1.jpeg'),
+    Movie(title: 'Pelicula 2', imageUrl: 'assets/imagen/pelicula2.jpeg'),
+    Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    Movie(title: 'Pelicula 4', imageUrl: 'assets/imagen/pelicula4.jpeg'),
+
+    //Movie(title: 'Pelicula 2', imageUrl: 'assets/imagen/pelicula2.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
+    ///Movie(title: 'Pelicula 3', imageUrl: 'assets/imagen/pelicula3.jpeg'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 200, // Ajusta la altura según tus necesidades
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: movies.length,
-            itemBuilder: (context, index) {
-              return MovieCard(movie: movies[index]);
-            },
-          ),
-        ),
-      ],
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, // número de columnas
+      ),
+      itemCount: movies.length,
+      itemBuilder: (context, index) {
+        return Column(
+          children: [
+            Image.asset(
+              movies[index].imageUrl,
+              fit: BoxFit.cover,
+            ),
+            Text(movies[index].title),
+          ],
+        );
+      },
     );
   }
 }
@@ -115,8 +119,8 @@ class MovieCard extends StatelessWidget {
         children: [
           Image.network(
             movie.imageUrl,
-            width: 120,
-            height: 180,
+            width: 100,
+            height: 100,
             fit: BoxFit.cover,
           ),
           Padding(
